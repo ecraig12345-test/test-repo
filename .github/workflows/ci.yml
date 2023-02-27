@@ -32,3 +32,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: gh issue create --title 'oh no' --body 'oh no'
+        env:
+          GH_TOKEN: ${{ github.token }}
