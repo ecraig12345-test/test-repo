@@ -15,7 +15,6 @@ on:
 
 permissions:
   pull-requests: write
-  issues: write
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -29,8 +28,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: gh pr view 1
+      - run: gh pr view 1
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - run: gh pr comment 1 -b 'oh no'
         env:
           GH_TOKEN: ${{ github.token }}
